@@ -21,7 +21,7 @@ def index():
     }
     if request.method == "POST":
         # Palavra que o usuário digitou
-
+        # Uso da API SerpAPI
         try:
             termo = request.form['termopesquisa']
             pesquisa = termo
