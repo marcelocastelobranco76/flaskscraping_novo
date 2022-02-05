@@ -6,6 +6,7 @@ import json
 import os, sys
 import signal
 import subprocess
+import requests
 
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ def index():
     if request.method == "POST":
         # Palavra que o usuário digitou
         # Uso da API SerpAPI
+        # O parâmetro num lista 05 links
         try:
             termo = request.form['termopesquisa']
             pesquisa = termo
@@ -32,11 +34,13 @@ def index():
                 "google_domain": "google.com.br",
                 "q": pesquisa,
                 "lr": "lang_pt",
-                "num": 5
+                "start": "50",
+                "num": "5",
 
             }
             busca = GoogleSearch(parametros)
             resultadosbusca = busca.get_dict()
+            search_result = busca.get_dictionary()
 
             listalinks = []
 
@@ -57,13 +61,12 @@ def index():
 
             return render_template('index.html', results=listalinks)
 
-
-
         except:
             erros.append(
                 "Favor digitar novamente a palavra a ser pesquisada."
             )
     return render_template('index.html', errors=erros, results=resultados)
+
 
 
 def multiprocessos(numprocs, starting_port):
@@ -78,6 +81,22 @@ def multiprocessos(numprocs, starting_port):
 
     signal.signal(signal.SIGINT, killprocesso)
     signal.pause()
+
+
+@app.route('/metricas', methods=["POST", "GET"])
+def metricas():
+    url = "https://serpapi.com/users/sign_in"
+    data = {
+        'user[email]': LOGIN,
+        'user[password]': SENHA
+    }
+
+    with requests.Session() as s:
+        response = requests.post(url, data)
+        print(response.text)
+        index_page = s.get('https://serpapi.com/searches')
+        soup = BeautifulSoup(index_page.text, 'html.parser')
+        print(soup.title)
 
 
 if __name__ == "__main__":
