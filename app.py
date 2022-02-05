@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 from serpapi import GoogleSearch
+from config import *
 import json
 import os, sys
 import signal
@@ -26,7 +27,7 @@ def index():
             termo = request.form['termopesquisa']
             pesquisa = termo
             parametros = {
-                "api_key": "e7d20364f72b532b06a3d9d74e7c1b3b499b5e08b285591006b76e68fe721144",
+                "api_key": API_KEY,
                 "engine": "google",
                 "google_domain": "google.com.br",
                 "q": pesquisa,

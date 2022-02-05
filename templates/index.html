@@ -22,7 +22,7 @@
       <br>
 
       {% for result in results %}
-        <h4>{{ result }}</h4>
+      <h4><a target="_blank" href="{{ result }}">{{ result }}</a></h4>
       {% endfor %}
 
         {% for error in errors %}
