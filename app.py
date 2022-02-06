@@ -86,6 +86,8 @@ def multiprocessos(numprocs, starting_port):
 
 @app.route('/metricas')
 def metricas():
+
+    # Lista em formato JSON todos os elementos referentes às pesquisas realizadas
     temporesultados = ""
     URL = "https://serpapi.com/searches?engine=google&api_key=52a0c4b6b5403ff8330fca0a4c95b45e6a143b1dd90b4f281574f485dec889ea"
     page = requests.get(URL)
