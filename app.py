@@ -39,6 +39,7 @@ def index():
 
             }
             busca = GoogleSearch(parametros)
+
             resultadosbusca = busca.get_dict()
             search_result = busca.get_dictionary()
 
@@ -61,12 +62,12 @@ def index():
 
             return render_template('index.html', results=listalinks)
 
+
         except:
             erros.append(
                 "Favor digitar novamente a palavra a ser pesquisada."
             )
     return render_template('index.html', errors=erros, results=resultados)
-
 
 
 def multiprocessos(numprocs, starting_port):
@@ -83,20 +84,23 @@ def multiprocessos(numprocs, starting_port):
     signal.pause()
 
 
-@app.route('/metricas', methods=["POST", "GET"])
+@app.route('/metricas')
 def metricas():
-    url = "https://serpapi.com/users/sign_in"
-    data = {
-        'user[email]': LOGIN,
-        'user[password]': SENHA
-    }
+    temporesultados = ""
+    URL = "https://serpapi.com/searches?engine=google&api_key=52a0c4b6b5403ff8330fca0a4c95b45e6a143b1dd90b4f281574f485dec889ea"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    rows = soup.find("table", class_="table table-striped searches-table monospace-table").find("tbody").find_all("tr")
 
-    with requests.Session() as s:
-        response = requests.post(url, data)
-        print(response.text)
-        index_page = s.get('https://serpapi.com/searches')
-        soup = BeautifulSoup(index_page.text, 'html.parser')
-        print(soup.title)
+    for row in rows:
+        cells1 = row.find_all("td")
+        rnid = cells1[0].get_text()
+        urlsearches = "https://serpapi.com/searches/" + rnid + ".json?api_key=52a0c4b6b5403ff8330fca0a4c95b45e6a143b1dd90b4f281574f485dec889ea"
+        pagesearches = requests.get(urlsearches)
+        soupsearches = BeautifulSoup(pagesearches.content, "html.parser")
+        print(soupsearches)
+
+    return render_template('metricas.html')
 
 
 if __name__ == "__main__":

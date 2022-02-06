@@ -15,9 +15,24 @@
       <h1>MÉTRICAS DE UTILIZAÇÃO</h1>
       <br>
 
-      {% for result in results %}
-      <h4><a target="_blank" href="{{ result }}">{{ result }}</a></h4>
-      {% endfor %}
+ {% block body %}
+    <table class="table table-striped" border=1>
+            <tr>
+                <th>Tempo de resposta</th>
+
+            </tr>
+
+            <tr>
+                <td> {{ data }} </td>
+
+            </tr>
+
+
+
+    </table>
+    {% endblock %}
+
+
 
 
     </div>
