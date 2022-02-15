@@ -17,15 +17,20 @@
 
  {% block body %}
     <table class="table table-striped" border=1>
+           <thead>
+    <tr>
+        <th>Termo Pesquisado</th>
+        <th>Tempo de Resposta (em segundos)</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in value %}
             <tr>
-                <th>Tempo de resposta</th>
-
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
             </tr>
-
-            <tr>
-                <td> {{ data }} </td>
-
-            </tr>
+        {% endfor %}
+    </tbody>
 
 
 

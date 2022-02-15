@@ -25,6 +25,10 @@
       <h4><a target="_blank" href="{{ result }}">{{ result }}</a></h4>
       {% endfor %}
 
+       {% for resulttime in resultstimes %}
+      <h4>{{ resulttime }}</h4>
+      {% endfor %}
+
         {% for error in errors %}
         <h4>{{ errors }}</h4>
       {% endfor %}
