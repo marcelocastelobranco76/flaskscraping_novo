@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Digite o termo a ser pesquisado</h2>
+<div>
+
+    <div class="login">
+
+        <form  action="{{ url_for('pesquisa') }}" method="POST">
+				<label for="termopesquisa">
+					<i class="fas fa-search"></i>
+				</label>
+				<input type="text" name="termopesquisa" placeholder="Digite o termo a ser pesquisado" id="termopesquisa" required>
+
+				<div class="msg">
+                        {% for error in errors %}
+                            <h4>{{ errors }}</h4>
+                        {% endfor %}
+                </div>
+				<input type="submit" value="Pesquisar">
+		</form>
+     </div>
+
+      <div>
+
+          {% for result in results %}
+          <h4><a target="_blank" href="{{ result }}">{{ result }}</a></h4>
+          {% endfor %}
+      </div>
+
+</div>
+
+{% endblock %}

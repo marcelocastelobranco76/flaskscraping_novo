@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>FLASK WEB SCRAPING</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <style>
-      .container {
-        max-width: 1000px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>MÉTRICAS DE UTILIZAÇÃO</h1>
-      <br>
+{% extends 'layout.html' %}
 
- {% block body %}
-    <table class="table table-striped" border=1>
+{% block title %}Métricas de Utilização{% endblock %}
+
+{% block content %}
+<h2>Métricas de Utilização</h2>
+<div>
+     <table>
            <thead>
     <tr>
         <th>Termo Pesquisado</th>
@@ -35,13 +24,5 @@
 
 
     </table>
-    {% endblock %}
-
-
-
-
-    </div>
-  <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  </body>
-</html>
+</div>
+{% endblock %}

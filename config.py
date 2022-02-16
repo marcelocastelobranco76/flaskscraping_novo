@@ -1,4 +1,3 @@
 # CHAVE SECRETA DA API SerpAPI
 API_KEY = '52a0c4b6b5403ff8330fca0a4c95b45e6a143b1dd90b4f281574f485dec889ea'
-LOGIN = 'mrcb_al@hotmail.com'
-SENHA = 'ssX^pESNlPRs8Qg6k%MKODL@OdxfDN'
+

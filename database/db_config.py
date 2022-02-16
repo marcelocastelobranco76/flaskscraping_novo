@@ -1,6 +1,7 @@
 from app import app
 from flaskext.mysql import MySQL
 
+app.secret_key = 'EcgPS^fTkDa8qZz7JHHrFtz91&B%sTqzuAjrZD#LoqzLTtXlpl'
 mysql = MySQL()
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
